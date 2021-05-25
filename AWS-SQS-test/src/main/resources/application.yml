@@ -1,0 +1,10 @@
+cloud: 
+  aws:
+    region:
+      static: us-east-2
+      auto: true
+    credentials:
+      access-key: AKIAW23MDFQCFCQYE5TV
+      secret-key: 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
+    end-point:
+      uri: https://sqs.us-east-2.amazonaws.com/469988748292/AWS-SQS-test
