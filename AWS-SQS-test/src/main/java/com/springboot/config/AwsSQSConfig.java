@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.amazonaws.services.sqs.AmazonSQSAsyncClientBuilder;
 
@@ -28,7 +27,7 @@ public class AwsSQSConfig {
 	}
 	
 	public AmazonSQSAsync amazonSQSAsync() {
-		return AmazonSQSAsyncClientBuilder.standard().withRegion(Regions.US_EAST_2)
+		return AmazonSQSAsyncClientBuilder.standard().withRegion(region)
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey)))
 				.build();
 	}
