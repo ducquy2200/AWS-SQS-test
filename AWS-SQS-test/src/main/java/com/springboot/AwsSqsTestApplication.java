@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication(exclude = {ContextStackAutoConfiguration.class})
 @RestController
 public class AwsSqsTestApplication {
-	
+
 	@Autowired
 	private QueueMessagingTemplate queueMessagingTemplate;
 	
@@ -24,13 +24,15 @@ public class AwsSqsTestApplication {
 	private String endpoint;
 	
 	@GetMapping("/message/{message}")
-	public void sendMessage(@PathVariable String message) {
+	public String sendMessage(@PathVariable String message) {
 		queueMessagingTemplate.send(endpoint, MessageBuilder.withPayload(message).build());
+		return message;
 	}
 	
 	@SqsListener("AWS-SQS-test")
 	public void receiveMessage(String message) {
 		LoggerFactory.getLogger(AwsSqsTestApplication.class).info("Message: \"{}\"", message);
+		
 	}
 	
 	public static void main(String[] args) {
